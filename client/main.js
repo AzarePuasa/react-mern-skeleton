@@ -1,5 +1,8 @@
 import React from 'react'
-import { hydrate } from 'react-dom'
+import { hydrate, render } from "react-dom"
 import App from './App'
 
-hydrate(<App/>, document.getElementById('root'))
+// Fix: Expected server HTML to contain a matching <a> in
+const renderMethod = module.hot ? render : hydrate;
+
+renderMethod(<App/>, document.getElementById('root'))
